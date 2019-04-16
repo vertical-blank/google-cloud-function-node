@@ -1,0 +1,18 @@
+#ifndef __LIBNATIVEIMPL_H
+#define __LIBNATIVEIMPL_H
+
+#include <graal_isolate.h>
+
+
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
+char* Java_org_pkg_apinative_Native_hello(graal_isolatethread_t*);
+
+char* format_sql(graal_isolatethread_t*, char*);
+
+#if defined(__cplusplus)
+}
+#endif
+#endif
