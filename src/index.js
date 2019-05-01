@@ -44,7 +44,7 @@ exports.handler = (req, res) => {
     res.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept");
     res.send(hello);
   } else {
-    const rep = libJava.format_sql(ref.deref(p_graal_isolatethread_t), ref.allocCString(req.body.toString()))
+    const rep = libJava.format_sql(ref.deref(p_graal_isolatethread_t), ref.allocCString(req.rawBody.toString()))
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept");
     res.send(rep);

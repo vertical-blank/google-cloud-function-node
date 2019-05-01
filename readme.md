@@ -6,5 +6,5 @@
 ```bash
 cd src
 npm i
-gcloud functions deploy format_sql_node --runtime nodejs8 --entry-point handler --trigger-http
+gcloud functions deploy format_sql --runtime nodejs8 --entry-point handler --trigger-http
 ```
