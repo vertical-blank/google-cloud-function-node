@@ -33,14 +33,20 @@ exports.handler = (req, res) => {
 
   const rc = libJava.graal_create_isolate(ref.NULL, ref.NULL, p_graal_isolatethread_t)
   if (rc !== 0) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept");
     res.send('error on isolate creation or attach')
     return;
   }
   if (req.method !== 'POST') {
     const hello = libJava.Java_org_pkg_apinative_Native_hello(ref.deref(p_graal_isolatethread_t))
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept");
     res.send(hello);
   } else {
-    const rep = libJava.format_sql(ref.deref(p_graal_isolatethread_t), ref.allocCString(req.body.toString()))
+    const rep = libJava.format_sql(ref.deref(p_graal_isolatethread_t), ref.allocCString(req.rawBody.toString()))
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept");
     res.send(rep);
   }
 
